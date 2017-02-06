@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  messenger:
+    build: ./arnaux
+    expose:
+      - "3000"
+
+  zandbak:
+    depends_on:
+      - messenger
+    build: ./zandbak-service
+    environment:
+      - remote_uri=ws://messenger:3000
+
+  mongo-redemption:
+    image: mongo
+
+  state-service:
+    depends_on:
+      - mongo-redemption
+      - messenger
+    build: ./redemption
+    environment:
+      - redemption_environment=prod

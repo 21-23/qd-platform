@@ -11,7 +11,7 @@ RUN apt-get install yarn
 # Electron
 RUN apt-get install -y libgtk2.0-0 libgconf-2-4 libasound2 libxtst6 libxss1 libnss3 xvfb
 
-RUN git clone --branch v1.3.1 https://github.com/games4nerds/zandbak-service.git
+RUN git clone --branch v1.5.1 https://github.com/games4nerds/zandbak-service.git
 
 WORKDIR ./zandbak-service
 

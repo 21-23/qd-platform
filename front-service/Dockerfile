@@ -8,15 +8,10 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt-get update
 RUN apt-get install yarn
 
-RUN yarn global add purescript pulp bower
+RUN git clone --branch v1.0.0 https://github.com/games4nerds/front-end-service.git
 
-RUN git clone --branch v2.0.0 https://github.com/games4nerds/arnaux.git
-
-WORKDIR ./arnaux
+WORKDIR ./front-end-service
 
 RUN yarn
-RUN bower i --allow-root
 
-RUN pulp build
-
-CMD pulp run
+CMD yarn start
