@@ -1,16 +1,8 @@
-FROM node:6.9.4
-
-# Yarn
-RUN apt-get update
-RUN apt-get install apt-transport-https
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update
-RUN apt-get install yarn
+FROM node:6.10.1
 
 RUN yarn global add purescript pulp bower
 
-RUN git clone --branch v2.0.0 https://github.com/games4nerds/arnaux.git
+COPY ./git ./arnaux
 
 WORKDIR ./arnaux
 

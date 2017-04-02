@@ -4,23 +4,45 @@ services:
 
   messenger:
     build: ./arnaux
-    expose:
-      - "3000"
 
-  zandbak:
+  sandbox-service:
     depends_on:
       - messenger
     build: ./zandbak-service
     environment:
       - remote_uri=ws://messenger:3000
 
-  mongo-redemption:
+  mongo-state:
     image: mongo
+    ports:
+      - "27018:27017"
 
   state-service:
     depends_on:
-      - mongo-redemption
+      - mongo-state
       - messenger
     build: ./redemption
     environment:
       - redemption_environment=prod
+
+  mongo-front-service:
+    image: mongo
+    ports:
+      - "27019:27017"
+
+  front-service:
+    depends_on:
+      - mongo-front-service
+      - messenger
+    build: ./front-service
+    environment:
+      - MONGO_URI=mongodb://mongo-front-service/fe-db
+      - ARNAUX_URL=ws://messenger:3000
+    ports:
+      - "3000:3000"
+
+  init-service:
+    depends_on:
+      - state-service
+      - front-service
+    build: ./ignition

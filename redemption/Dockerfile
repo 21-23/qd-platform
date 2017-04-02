@@ -1,10 +1,9 @@
 FROM fpco/stack-build:lts-7.18
 
-RUN stack setup
-
-RUN git clone --branch v1.2.1 https://github.com/games4nerds/redemption.git
+COPY ./git ./redemption
 
 WORKDIR ./redemption
 
+RUN stack setup
 RUN stack build
 CMD stack exec redemption-exe
