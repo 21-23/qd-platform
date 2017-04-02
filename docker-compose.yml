@@ -40,6 +40,7 @@ services:
       - ARNAUX_URL=ws://messenger:3000
     ports:
       - "3000:3000"
+      - "3001:3001"
 
   init-service:
     depends_on:
