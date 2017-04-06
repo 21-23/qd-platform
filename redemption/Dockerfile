@@ -1,9 +1,11 @@
 FROM fpco/stack-build:lts-7.18
 
-COPY ./git ./redemption
-
+RUN git clone --branch v2.0.0 https://github.com/21-23/redemption.git ./redemption
 WORKDIR ./redemption
-
 RUN stack setup
 RUN stack build
+
+COPY ./git .
+RUN stack build
+
 CMD stack exec redemption-exe
