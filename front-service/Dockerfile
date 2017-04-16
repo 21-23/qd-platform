@@ -9,7 +9,7 @@ COPY ./config.secret.json .
 RUN yarn global add node-gyp
 
 # must be another Yarn issue:
-# lru-native is unable find nan when built with node-gyp
+# lru-native is unable to find nan when built with node-gyp
 RUN yarn add nan
 
 RUN yarn
