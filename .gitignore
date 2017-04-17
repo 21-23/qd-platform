@@ -1,7 +1,7 @@
 npm-debug.log
 _qd-secret
 
-front-service/config.secret.json
+front-service/config.secret*.json
 ignition/data
 
 */git
