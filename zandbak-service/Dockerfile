@@ -12,15 +12,12 @@ RUN yarn
 COPY ./git .
 RUN yarn
 
-#COPY ./start.sh .
-#RUN chmod +x ./start.sh
-
 ENV DISPLAY :99
 
 # Install Xvfb init script
-ADD xvfb_init /etc/init.d/xvfb
+COPY xvfb /etc/init.d/
 RUN chmod a+x /etc/init.d/xvfb
-ADD xvfb-daemon-run /usr/bin/xvfb-daemon-run
+COPY xvfb-daemon-run /usr/bin/
 RUN chmod a+x /usr/bin/xvfb-daemon-run
 
 CMD /usr/bin/xvfb-daemon-run && yarn start
