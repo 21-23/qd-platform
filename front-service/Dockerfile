@@ -3,7 +3,7 @@ FROM node:6.10.1
 COPY ./git ./front-end-service
 
 WORKDIR ./front-end-service
-COPY ./config.secret.json .
+COPY ./config.secret*.json ./
 
 # https://github.com/yarnpkg/yarn/issues/2266
 RUN yarn global add node-gyp
