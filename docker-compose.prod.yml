@@ -8,3 +8,9 @@ services:
     ports:
       - "80:3000"
       - "3001:3001"
+
+  sandbox-service:
+    environment:
+      - remote_uri=ws://messenger:3000
+      - zandbakConfig_workersCount=20
+      - zandbakConfig_maxWorkersCoun=40
