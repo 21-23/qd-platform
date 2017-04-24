@@ -11,6 +11,8 @@ services:
     build: ./zandbak-service
     environment:
       - remote_uri=ws://messenger:3000
+      - ELECTRON_ENABLE_LOGGING=1
+      - LOG_LEVEL=all
 
   mongo-state:
     image: mongo

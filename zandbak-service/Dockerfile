@@ -20,4 +20,4 @@ RUN chmod a+x /etc/init.d/xvfb
 COPY xvfb-daemon-run /usr/bin/
 RUN chmod a+x /usr/bin/xvfb-daemon-run
 
-CMD /usr/bin/xvfb-daemon-run && yarn start
+CMD /usr/bin/xvfb-daemon-run && yarn run start:container
