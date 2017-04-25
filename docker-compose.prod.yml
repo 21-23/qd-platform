@@ -14,3 +14,4 @@ services:
       - remote_uri=ws://messenger:3000
       - zandbakConfig_workersCount=20
       - zandbakConfig_maxWorkersCoun=40
+      - LOG_LEVEL=+error,-warn,-info,-log,+perf
