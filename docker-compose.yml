@@ -40,6 +40,7 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo-front-service/fe-db
       - ARNAUX_URL=ws://messenger:3000
+      - ENABLE_GUNSLINGER=true
     ports:
       - "3000:3000"
       - "3001:3001"
