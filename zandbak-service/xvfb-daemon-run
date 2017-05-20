@@ -1,5 +1,5 @@
 #!/bin/bash
 
 /etc/init.d/xvfb restart
-sleep 1
+sleep 5
 exit 0
