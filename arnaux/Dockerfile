@@ -1,12 +1,12 @@
-FROM node:6.10.1
+FROM node:8.2.1
 
-RUN yarn global add purescript pulp bower
+RUN npm i -g purescript pulp bower
 
 COPY ./git ./arnaux
 
 WORKDIR ./arnaux
 
-RUN yarn
+RUN npm i
 RUN bower i --allow-root
 
 RUN pulp build

@@ -1,4 +1,4 @@
-FROM node:6.10.1
+FROM node:8.2.1
 
 RUN apt-get update
 RUN apt-get install openssl
@@ -8,6 +8,6 @@ COPY ./git ./ignition
 WORKDIR ./ignition
 COPY ./data/*.json ./data/
 
-RUN yarn
+RUN npm i
 
-CMD yarn start
+CMD npm start
