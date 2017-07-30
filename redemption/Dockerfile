@@ -1,4 +1,4 @@
-FROM fpco/stack-build:lts-8.9
+FROM fpco/stack-build:lts-9.0
 
 RUN git clone --branch v3.3.0 https://github.com/21-23/redemption.git ./redemption
 WORKDIR ./redemption
