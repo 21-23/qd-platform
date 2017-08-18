@@ -1,6 +1,6 @@
 FROM fpco/stack-build:lts-9
 
-RUN git clone --branch v3.5.0 https://github.com/21-23/redemption.git ./redemption
+RUN git clone --branch v3.5.1 https://github.com/21-23/redemption.git ./redemption
 WORKDIR ./redemption
 RUN stack setup
 RUN stack build
