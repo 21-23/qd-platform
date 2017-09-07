@@ -16,7 +16,7 @@ COPY ./git ./arnaux
 
 WORKDIR ./arnaux
 
-RUN npm i
+RUN npm i --production
 RUN bower i --allow-root
 
 RUN pulp build

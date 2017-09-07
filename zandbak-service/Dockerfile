@@ -7,10 +7,10 @@ RUN apt-get install -y libgtk2.0-0 libgconf-2-4 libasound2 libxtst6 libxss1 libn
 
 RUN git clone --branch v2.0.2 https://github.com/21-23/zandbak-service.git ./zandbak-service
 WORKDIR ./zandbak-service
-RUN npm i
+RUN npm i --production
 
 COPY ./git .
-RUN npm i
+RUN npm i --production
 
 ENV DISPLAY :99
 
