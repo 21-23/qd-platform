@@ -8,6 +8,6 @@ COPY ./git ./ignition
 WORKDIR ./ignition
 COPY ./data/*.json ./data/
 
-RUN npm i
+RUN npm i --production
 
 CMD npm start
