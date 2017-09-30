@@ -24,9 +24,19 @@ git clone git@github.com:21-23/ignition.git ignition/git
 # _qd-ui
 git clone git@github.com:21-23/_qd-ui.git front-service/_qd-ui
 
+# cssqd-ui
+git clone git@github.com:21-23/cssqd-ui.git front-service/cssqd-ui
+
 # build and copy _qd-ui
 cd ./front-service/_qd-ui
 npm i && npm run build:prod
 mkdir -p ../git/static/_qd
 cp -r ./dist-prod/* ../git/static/_qd
+cd ../..
+
+# build and copy cssqd-ui
+cd ./front-service/cssqd-ui
+# npm i && npm run build:prod
+mkdir -p ../git/static/cssqd
+# cp -r ./dist-prod/* ../git/static/_qd
 cd ../..
