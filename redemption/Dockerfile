@@ -1,11 +1,12 @@
-FROM fpco/stack-build:lts-9
+FROM fpco/stack-build:lts-9.5
 
-RUN git clone --branch v3.5.1 https://github.com/21-23/redemption.git ./redemption
+RUN git clone --branch v3.5.3 https://github.com/21-23/redemption.git ./redemption
 WORKDIR ./redemption
 RUN stack setup
 RUN stack build
 
-COPY ./git .
+RUN git clone --branch v3.5.3 https://github.com/21-23/redemption.git ../git
+RUN cp -r ../git .
 RUN stack build
 
 CMD stack exec redemption-exe
