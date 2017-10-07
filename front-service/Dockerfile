@@ -9,4 +9,6 @@ RUN git clone --branch v2.0.0 https://github.com/21-23/front-end-service.git ../
 RUN cp -r ../git .
 RUN npm i --production
 
+COPY ./_qd-ui/dist-prod/* ./static/
+
 CMD npm run start

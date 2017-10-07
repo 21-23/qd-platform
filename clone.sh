@@ -31,6 +31,4 @@ git clone git@github.com:21-23/_qd-ui.git front-service/_qd-ui
 # build and copy _qd-ui
 cd ./front-service/_qd-ui
 npm i && npm run build:prod
-mkdir ../git/static
-cp -r ./dist-prod/* ../git/static
 cd ../..
