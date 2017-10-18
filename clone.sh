@@ -38,7 +38,5 @@ cd ../..
 
 # build and copy cssqd-ui
 cd ./front-service/cssqd-ui
-# npm i && npm run build:prod
-mkdir -p ../git/static/cssqd
-# cp -r ./dist-prod/* ../git/static/_qd
+npm i && npm run build:prod
 cd ../..

@@ -1,1 +1,1 @@
-# _qd
+# qd platform
