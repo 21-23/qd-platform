@@ -6,20 +6,24 @@ cp -r ./_qd-secret/front-service/* ./front-service
 mkdir ./ignition/data
 cp -r ./_qd-secret/init-service/* ./ignition/data
 
-# zandbak-service
-git clone git@github.com:21-23/zandbak-service.git zandbak-service/git
+# Service cloning directly from master is disabled
+# in favor of the tagged releases
+# Uncomment and use at your own risk
 
 # arnaux
-git clone git@github.com:21-23/arnaux.git arnaux/git
-
-# redemption
-git clone git@github.com:21-23/redemption.git redemption/git
+# git clone git@github.com:21-23/arnaux.git arnaux/git
 
 # front-service
-git clone git@github.com:21-23/front-end-service.git front-service/git
+# git clone git@github.com:21-23/front-end-service.git front-service/git
+
+# redemption
+# git clone git@github.com:21-23/redemption.git redemption/git
 
 # ignition
-git clone git@github.com:21-23/ignition.git ignition/git
+# git clone git@github.com:21-23/ignition.git ignition/git
+
+# zandbak-service
+# git clone git@github.com:21-23/zandbak-service.git zandbak-service/git
 
 # _qd-ui
 git clone git@github.com:21-23/_qd-ui.git front-service/_qd-ui
@@ -30,8 +34,6 @@ git clone git@github.com:21-23/cssqd-ui.git front-service/cssqd-ui
 # build and copy _qd-ui
 cd ./front-service/_qd-ui
 npm i && npm run build:prod
-mkdir -p ../git/static/_qd
-cp -r ./dist-prod/* ../git/static/_qd
 cd ../..
 
 # build and copy cssqd-ui

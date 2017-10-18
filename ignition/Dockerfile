@@ -3,11 +3,13 @@ FROM node:8.2.1
 RUN apt-get update
 RUN apt-get install openssl
 
-COPY ./git ./ignition
-
+RUN git clone --branch v1.0.0 https://github.com/21-23/ignition.git ./ignition
 WORKDIR ./ignition
 COPY ./data/*.json ./data/
-
 RUN npm i --production
 
-CMD npm start
+RUN git clone --branch v1.0.0 https://github.com/21-23/ignition.git ../git
+RUN cp -r ../git .
+RUN npm i --production
+
+CMD npm run start
