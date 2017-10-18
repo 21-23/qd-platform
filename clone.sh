@@ -28,7 +28,15 @@ cp -r ./_qd-secret/init-service/* ./ignition/data
 # _qd-ui
 git clone git@github.com:21-23/_qd-ui.git front-service/_qd-ui
 
+# cssqd-ui
+git clone git@github.com:21-23/cssqd-ui.git front-service/cssqd-ui
+
 # build and copy _qd-ui
 cd ./front-service/_qd-ui
+npm i && npm run build:prod
+cd ../..
+
+# build and copy cssqd-ui
+cd ./front-service/cssqd-ui
 npm i && npm run build:prod
 cd ../..
