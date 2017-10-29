@@ -26,7 +26,7 @@ cp -r ./_qd-secret/init-service/* ./ignition/data
 # git clone git@github.com:21-23/zandbak-service.git zandbak-service/git
 
 # _qd-ui
-git clone --branch v1.1.0 git@github.com:21-23/_qd-ui.git front-service/_qd-ui
+git clone --branch v1.1.1 git@github.com:21-23/_qd-ui.git front-service/_qd-ui
 
 # cssqd-ui
 git clone git@github.com:21-23/cssqd-ui.git front-service/cssqd-ui
