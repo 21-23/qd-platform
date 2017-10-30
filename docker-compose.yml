@@ -11,8 +11,10 @@ services:
     build: ./zandbak-service
     environment:
       - remote_uri=ws://messenger:3000
+      - zandbakConfig_sand=lodash/subworkers
+      - zandbakConfig_backend=electron
       - ELECTRON_ENABLE_LOGGING=1
-      - LOG_LEVEL=all
+      - logLevel=+perf,+error,+info
 
   mongo-state:
     image: mongo
@@ -41,6 +43,7 @@ services:
       - MONGO_URI=mongodb://mongo-front-service/fe-db
       - ARNAUX_URL=ws://messenger:3000
       - ENABLE_GUNSLINGER=true
+      - LOG_LEVEL=all
     ports:
       - "3000:3000"
       - "3001:3001"

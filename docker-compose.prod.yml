@@ -6,6 +6,7 @@ services:
     environment:
       - AUTH_CONFIG=config.secret.prod.json
       - ENABLE_GUNSLINGER=false
+      - LOG_LEVEL=+error,+warn,-log
     ports:
       - "80:3000"
       - "3001:3001"
@@ -13,6 +14,9 @@ services:
   sandbox-service:
     environment:
       - remote_uri=ws://messenger:3000
+      - zandbakConfig_sand=lodash/subworkers
+      - zandbakConfig_backend=electron
+      - ELECTRON_ENABLE_LOGGING=1
+      - logLevel=+perf,+error,-info
       - zandbakConfig_workersCount=2
       - zandbakConfig_subworkersCount=10
-      - LOG_LEVEL=+error,+perf
