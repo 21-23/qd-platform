@@ -1,6 +1,15 @@
-version: '3'
+version: '3.2'
 
 services:
+
+  mongo-logs:
+    image: mongo
+    ports:
+      - "27020:27017"
+    volumes:
+      - type: volume
+        source: ./mongo-logs
+        target: /data/db
 
   messenger:
     build: ./arnaux
@@ -36,14 +45,20 @@ services:
 
   front-service:
     depends_on:
+      - mongo-logs
       - mongo-front-service
       - messenger
     build: ./front-service
+    volumes:
+      - type: volume
+        source: ./front-service/logs
+        target: /front-end-service/logs
     environment:
-      - MONGO_URI=mongodb://mongo-front-service/fe-db
+      - DB_URI=mongodb://mongo-front-service/fe-db
       - ARNAUX_URL=ws://messenger:3000
-      - ENABLE_GUNSLINGER=true
-      - LOG_LEVEL=all
+      - GUNSLINGERS=true
+      - LOG_LEVEL=info
+      - LOG_DBURI=mongodb://mongo-logs/qd-logs
     ports:
       - "3000:3000"
       - "3001:3001"

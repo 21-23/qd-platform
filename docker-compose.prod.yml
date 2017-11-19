@@ -1,12 +1,13 @@
-version: '3'
+version: '3.2'
 
 services:
 
   front-service:
     environment:
       - AUTH_CONFIG=config.secret.prod.json
-      - ENABLE_GUNSLINGER=false
-      - LOG_LEVEL=+error,+warn,-log
+      - GUNSLINGERS=false
+      - LOG_LEVEL=warn
+      - LOG_CONSOLE=false
     ports:
       - "80:3000"
       - "3001:3001"
