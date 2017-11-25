@@ -6,7 +6,7 @@ COPY ./config.secret*.json ./
 RUN npm i --production
 
 RUN git clone --branch v2.2.0 https://github.com/21-23/front-end-service.git ../git
-RUN cp -r ../git .
+RUN cp -r ../git/* .
 RUN npm i --production
 
 COPY ./_qd-ui/dist-prod/* ./static/_qd/

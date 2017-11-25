@@ -6,7 +6,7 @@ RUN stack setup
 RUN stack build
 
 RUN git clone --branch v4.0.0 https://github.com/21-23/redemption.git ../git
-RUN cp -r ../git .
+RUN cp -r ../git/* .
 RUN stack build
 
 CMD stack exec redemption-exe
