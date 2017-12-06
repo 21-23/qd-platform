@@ -5,7 +5,7 @@ WORKDIR ./arnaux
 RUN stack setup
 RUN stack build
 
-RUN git clone --branch v3.1.0 https://github.com/21-23/arnaux.git ../git
+RUN git clone --branch v3.2.0 https://github.com/21-23/arnaux.git ../git
 RUN cp -r ../git/* .
 RUN stack build
 
