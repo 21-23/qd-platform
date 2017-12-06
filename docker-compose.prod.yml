@@ -15,8 +15,8 @@ services:
   sandbox-service:
     environment:
       - remote_uri=ws://messenger:3000
-      - zandbakConfig_sand=lodash/subworkers
-      - zandbakConfig_validators=esprima
+      - zandbakConfig_sand=css
+      - zandbakConfig_validators=banned-chars
       - zandbakConfig_backend=electron
       - ELECTRON_ENABLE_LOGGING=1
       - logLevel=+perf,+error,-info
