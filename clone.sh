@@ -29,7 +29,7 @@ cp -r ./_qd-secret/init-service/* ./ignition/data
 git clone --branch v1.1.1 git@github.com:21-23/_qd-ui.git front-service/_qd-ui
 
 # cssqd-ui
-git clone --branch v1.0.1 git@github.com:21-23/cssqd-ui.git front-service/cssqd-ui
+git clone --branch v1.0.2 git@github.com:21-23/cssqd-ui.git front-service/cssqd-ui
 
 # build and copy _qd-ui
 cd ./front-service/_qd-ui
