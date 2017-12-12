@@ -1,4 +1,4 @@
-FROM node:8.2.1
+FROM node:8.9.3
 
 RUN git clone --branch v2.2.0 https://github.com/21-23/front-end-service.git ./front-end-service
 WORKDIR ./front-end-service
