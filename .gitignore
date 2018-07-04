@@ -1,9 +1,9 @@
 npm-debug.log
 _qd-secret
 
-front-service/config.secret*.json
-ignition/data
+services/front-service/config.secret*.json
+services/ignition/data
 
 */git
-front-service/_qd-ui
-front-service/cssqd-ui
+services/front-service/_qd-ui
+services/front-service/cssqd-ui
