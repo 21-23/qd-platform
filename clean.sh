@@ -1,9 +1,9 @@
 #!/bin/bash
 rm -rf _qd-secret
-rm -rf zandbak-service/git
-rm -rf arnaux/git
-rm -rf redemption/git
-rm -rf front-service/git
-rm -rf ignition/git
-rm -rf front-service/_qd-ui
-rm -rf front-service/cssqd-ui
+rm -rf services/zandbak-service/git
+rm -rf services/arnaux/git
+rm -rf services/redemption/git
+rm -rf services/front-service/git
+rm -rf services/ignition/git
+rm -rf services/front-service/_qd-ui
+rm -rf services/front-service/cssqd-ui
