@@ -1,4 +1,4 @@
-FROM 26e7fa25871d
+FROM 2123io/hex:test1
 
 COPY ./services ./
 COPY ./Hexfile.yml .

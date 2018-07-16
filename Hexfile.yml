@@ -15,9 +15,7 @@ services:
     ports:
       - "27020:27017"
     volumes:
-      - type: volume
-        source: ./mongo-logs
-        target: /data/db
+      - ./mongo-logs:/data/db
   -
     name: messenger
     context: ./arnaux
@@ -34,9 +32,7 @@ services:
     name: front-service
     context: ./front-service
     volumes:
-      - type: volume
-        source: ./front-service/logs
-        target: /front-end-service/logs
+      - ./front-service/logs:/front-end-service/logs
     environment:
       - DB_URI=mongodb://mongo-front-service/fe-db
       - ARNAUX_URL=ws://messenger:3000
