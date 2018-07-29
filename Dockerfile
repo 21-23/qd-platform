@@ -1,4 +1,4 @@
-FROM 2123io/hex:test1
+FROM 2123io/hex:test2
 
 COPY ./services ./
 COPY ./Hexfile.yml .

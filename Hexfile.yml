@@ -70,7 +70,7 @@ services:
 
 messenger:
   service: messenger
-  port: 3002
+  port: 3000
 
 init-sequence:
   - mongo-front-service
