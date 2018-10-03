@@ -65,6 +65,17 @@ services:
       - ELECTRON_ENABLE_LOGGING=1
       - logLevel=+perf,+error,+info
   -
+    name: sandbox-service:jsqd
+    context: ./zandbak-service
+    environment:
+      - remote_uri=ws://messenger:3000
+      - remote_identity=sandbox-service:jsqd
+      - zandbakConfig_sand=js
+      - zandbakConfig_validators=acorn
+      - zandbakConfig_backend=electron
+      - ELECTRON_ENABLE_LOGGING=1
+      - logLevel=+perf,+error,+info
+  -
     name: init-service
     context: ./ignition
 
