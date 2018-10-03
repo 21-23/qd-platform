@@ -7,3 +7,4 @@ rm -rf services/front-service/git
 rm -rf services/ignition/git
 rm -rf services/front-service/_qd-ui
 rm -rf services/front-service/cssqd-ui
+rm -rf services/front-service/jsqd-ui
