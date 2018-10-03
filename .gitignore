@@ -7,3 +7,4 @@ services/ignition/data
 */git
 services/front-service/_qd-ui
 services/front-service/cssqd-ui
+services/front-service/jsqd-ui
