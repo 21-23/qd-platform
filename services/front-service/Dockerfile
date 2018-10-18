@@ -5,7 +5,7 @@ WORKDIR ./front-end-service
 COPY ./config.secret*.json ./
 RUN npm i --production
 
-RUN git clone --branch v2.3.1 https://github.com/21-23/front-end-service.git ../git
+RUN git clone --branch v2.4.1 https://github.com/21-23/front-end-service.git ../git
 RUN cp -r ../git/* .
 RUN npm i --production
 

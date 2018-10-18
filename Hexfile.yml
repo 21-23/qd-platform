@@ -41,6 +41,7 @@ services:
       - AUTH_CONFIG=config.secret.prod.json
       - LOG_LEVEL=warn
       - LOG_CONSOLE=false
+      - SOLUTION_SYNC_ONLY=true
     ports:
       - "3000:3000"
       - "3001:3001"
