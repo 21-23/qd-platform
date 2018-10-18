@@ -11,7 +11,7 @@ git clone --branch v1.1.2 git@github.com:21-23/_qd-ui.git ./services/front-servi
 # cssqd-ui
 git clone --branch v1.0.3 git@github.com:21-23/cssqd-ui.git ./services/front-service/cssqd-ui
 # jsqd-ui
-git clone --branch v1.0.0 git@github.com:21-23/jsqd-ui.git ./services/front-service/jsqd-ui
+git clone --branch v1.1.0 git@github.com:21-23/jsqd-ui.git ./services/front-service/jsqd-ui
 
 # build and copy _qd-ui
 cd ./services/front-service/_qd-ui
