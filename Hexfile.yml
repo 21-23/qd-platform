@@ -73,11 +73,13 @@ services:
     environment:
       - remote_uri=ws://messenger:3000
       - remote_identity=sandbox-service:jsqd
-      - zandbakConfig_sand=js
+      - zandbakConfig_sand=js/subworkers
       - zandbakConfig_validators=acorn
       - zandbakConfig_backend=electron
       - ELECTRON_ENABLE_LOGGING=1
       - logLevel=+perf,+error,+info
+      - zandbakConfig_workersCount=50
+      - zandbakConfig_subworkersCount=100
   -
     name: init-service
     context: ./ignition
