@@ -1,11 +1,12 @@
-NAME=qd-platform
+IMAGE_NAME=qd-platform
+CONTAINER_NAME=qd-platform
 DOCKER_SOCKET=/var/run/docker.sock
-TIMEOUT=9999
+TIMEOUT_SECONDS=9999
 
 all: build run
 
 build:
-	docker build -t $(NAME) .
+	docker build -t $(IMAGE_NAME) .
 
 run:
 	docker run \
@@ -13,11 +14,8 @@ run:
 	  --tty \
 	  --detach \
 	  --interactive \
-	  --name $(NAME) \
-	  --stop-timeout=$(TIMEOUT) \
+	  --name $(CONTAINER_NAME) \
+	  --stop-timeout=$(TIMEOUT_SECONDS) \
 	  --network hex-network \
 	  --mount type=bind,source=$(DOCKER_SOCKET),target=$(DOCKER_SOCKET) \
-	  $(NAME)
-
-stop:
-	docker stop --time $(TIMEOUT) $(NAME)
+	  $(IMAGE_NAME)
