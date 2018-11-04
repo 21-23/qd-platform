@@ -4,11 +4,15 @@ services:
     image: mongo
     ports:
       - "27019:27017"
+    volumes:
+      - mongo-front-service:/data/db
   -
     name: mongo-state
     image: mongo
     ports:
       - "27018:27017"
+    volumes:
+      - mongo-state:/data/db
   -
     name: mongo-logs
     image: mongo
@@ -23,6 +27,8 @@ services:
       - ARNAUX_LOG_LEVEL=Trace
     ports:
       - "3002:3000"
+    volumes:
+      - arnaux-logs:/arnaux/logs
   -
     name: state-service
     context: ./redemption
