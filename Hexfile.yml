@@ -50,7 +50,7 @@ services:
       - SOLUTION_SYNC_ONLY=true
     ports:
       - "3000:3000"
-      - "3001:3001"
+      - "3010:3001"
   -
     name: sandbox-service:cssqd
     context: ./zandbak-service
