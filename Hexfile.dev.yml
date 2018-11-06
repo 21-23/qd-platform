@@ -44,7 +44,7 @@ services:
       - ARNAUX_URL=ws://messenger:3000
       - GUNSLINGERS=false
       - LOG_DBURI=mongodb://mongo-logs/qd-logs
-      - AUTH_CONFIG=config.secret.prod.json
+      - AUTH_CONFIG=config.secret.json
       - LOG_LEVEL=warn
       - LOG_CONSOLE=false
       - SOLUTION_SYNC_ONLY=true
