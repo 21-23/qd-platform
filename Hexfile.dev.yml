@@ -1,0 +1,101 @@
+services:
+  -
+    name: mongo-front-service
+    image: mongo
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo-front-service:/data/db
+  -
+    name: mongo-state
+    image: mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-state:/data/db
+  -
+    name: mongo-logs
+    image: mongo
+    ports:
+      - "27020:27017"
+    volumes:
+      - mongo-logs:/data/db
+  -
+    name: messenger
+    context: ./arnaux
+    environment:
+      - ARNAUX_LOG_LEVEL=Trace
+    ports:
+      - "3002:3000"
+    volumes:
+      - arnaux-logs:/arnaux/logs
+  -
+    name: state-service
+    context: ./redemption
+    environment:
+      - redemption_environment=prod
+  -
+    name: front-service
+    context: ./front-service
+    volumes:
+      - front-service-logs:/front-end-service/logs
+    environment:
+      - DB_URI=mongodb://mongo-front-service/fe-db
+      - ARNAUX_URL=ws://messenger:3000
+      - GUNSLINGERS=false
+      - LOG_DBURI=mongodb://mongo-logs/qd-logs
+      - AUTH_CONFIG=config.secret.json
+      - LOG_LEVEL=warn
+      - LOG_CONSOLE=false
+      - SOLUTION_SYNC_ONLY=true
+    ports:
+      - "3000:3000"
+      - "3010:3001"
+  -
+    name: sandbox-service:cssqd
+    context: ./zandbak-service
+    environment:
+      - remote_uri=ws://messenger:3000
+      - remote_identity=sandbox-service:cssqd
+      - zandbakConfig_sand=css
+      - zandbakConfig_validators=banned-chars
+      - zandbakConfig_backend=electron
+      - ELECTRON_ENABLE_LOGGING=1
+      - logLevel=+perf,+error,+info
+  -
+    name: sandbox-service:_qd
+    context: ./zandbak-service
+    environment:
+      - remote_uri=ws://messenger:3000
+      - remote_identity=sandbox-service:_qd
+      - zandbakConfig_sand=lodash
+      - zandbakConfig_validators=banned-chars
+      - zandbakConfig_backend=electron
+      - ELECTRON_ENABLE_LOGGING=1
+      - logLevel=+perf,+error,+info
+  -
+    name: sandbox-service:jsqd
+    context: ./zandbak-service
+    environment:
+      - remote_uri=ws://messenger:3000
+      - remote_identity=sandbox-service:jsqd
+      - zandbakConfig_sand=js/subworkers
+      - zandbakConfig_validators=acorn
+      - zandbakConfig_backend=electron
+      - ELECTRON_ENABLE_LOGGING=1
+      - logLevel=+perf,+error,+info
+      - zandbakConfig_workersCount=50
+      - zandbakConfig_subworkersCount=100
+  -
+    name: init-service
+    context: ./ignition
+
+messenger:
+  service: messenger
+  host: messenger
+  port: 3000
+
+init-sequence:
+  - mongo-front-service
+  - mongo-state
+  - mongo-logs
