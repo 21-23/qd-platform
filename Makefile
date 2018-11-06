@@ -8,7 +8,12 @@ HEXFILE_DEV=./Hexfile.dev.yml
 all: build run
 
 build:
+	cp -r ../_qd-secret/front-service/config.secret*.json ./services/front-service
+	mkdir -p ./services/ignition/data
+	cp -r ../_qd-secret/init-service/* ./services/ignition/data
 	docker build -t $(IMAGE_NAME) .
+	rm ./services/front-service/config.secret*.json
+	rm -r ./services/ignition/data
 
 run: run-container
 
