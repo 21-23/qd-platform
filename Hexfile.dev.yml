@@ -42,7 +42,7 @@ services:
     environment:
       - DB_URI=mongodb://mongo-front-service/fe-db
       - ARNAUX_URL=ws://messenger:3000
-      - GUNSLINGERS=false
+      - GUNSLINGERS=true
       - LOG_DBURI=mongodb://mongo-logs/qd-logs
       - AUTH_CONFIG=config.secret.json
       - LOG_LEVEL=warn
