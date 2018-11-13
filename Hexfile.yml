@@ -62,17 +62,20 @@ services:
       - zandbakConfig_backend=electron
       - ELECTRON_ENABLE_LOGGING=1
       - logLevel=+perf,+error,+info
+      - zandbakConfig_workersCount=50
   -
     name: sandbox-service:_qd
     context: ./zandbak-service
     environment:
       - remote_uri=ws://messenger:3000
       - remote_identity=sandbox-service:_qd
-      - zandbakConfig_sand=lodash
+      - zandbakConfig_sand=lodash/subworkers
       - zandbakConfig_validators=banned-chars
       - zandbakConfig_backend=electron
       - ELECTRON_ENABLE_LOGGING=1
       - logLevel=+perf,+error,+info
+      - zandbakConfig_workersCount=1
+      - zandbakConfig_subworkersCount=100
   -
     name: sandbox-service:jsqd
     context: ./zandbak-service
@@ -84,8 +87,8 @@ services:
       - zandbakConfig_backend=electron
       - ELECTRON_ENABLE_LOGGING=1
       - logLevel=+perf,+error,+info
-      - zandbakConfig_workersCount=50
-      - zandbakConfig_subworkersCount=100
+      - zandbakConfig_workersCount=20
+      - zandbakConfig_subworkersCount=20
   -
     name: init-service
     context: ./ignition
