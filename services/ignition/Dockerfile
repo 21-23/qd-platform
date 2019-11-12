@@ -8,7 +8,7 @@ WORKDIR ./ignition
 COPY ./data/*.json ./data/
 RUN npm i --production
 
-RUN git clone --branch v1.5.0 https://github.com/21-23/ignition.git ../git
+RUN git clone --branch v1.5.1 https://github.com/21-23/ignition.git ../git
 RUN cp -r ../git/* .
 RUN npm i --production
 
