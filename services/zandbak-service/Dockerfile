@@ -9,7 +9,7 @@ RUN git clone --branch v3.1.1 https://github.com/21-23/zandbak-service.git ./zan
 WORKDIR ./zandbak-service
 RUN npm i --production
 
-RUN git clone --branch v3.2.2 https://github.com/21-23/zandbak-service.git ../git
+RUN git clone --branch v3.3.0 https://github.com/21-23/zandbak-service.git ../git
 RUN cp -r ../git/* .
 RUN npm i --production
 
