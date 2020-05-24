@@ -5,7 +5,7 @@ RUN apt-get update
 # Electron
 RUN apt-get install -y libgtk2.0-0 libgconf-2-4 libasound2 libxtst6 libxss1 libnss3 xvfb
 
-RUN git clone --branch v3.1.1 https://github.com/21-23/zandbak-service.git ./zandbak-service
+RUN git clone --branch v3.3.0 https://github.com/21-23/zandbak-service.git ./zandbak-service
 WORKDIR ./zandbak-service
 RUN npm i --production
 
