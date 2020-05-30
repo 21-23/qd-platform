@@ -30,5 +30,5 @@ run-container:
 	  --stop-timeout=$(TIMEOUT_SECONDS) \
 	  --network hex-network \
 	  --mount type=bind,source=$(DOCKER_SOCKET),target=$(DOCKER_SOCKET) \
-	  --mount type=bind,source=$(abspath $(HEXFILE)),target=/opt/hex/Hexfile.yml \
+	  --mount type=bind,source=$(abspath $(HEXFILE)),target=/opt/app/Hexfile.yml \
 	  $(IMAGE_NAME)

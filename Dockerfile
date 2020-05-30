@@ -1,4 +1,4 @@
-FROM 2123io/hex:1.0.0
+FROM 2123io/hex:1.1.2
 
 COPY ./services ./
 
