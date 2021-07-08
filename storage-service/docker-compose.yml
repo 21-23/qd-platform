@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  db:
+    build:
+        dockerfile: db.Dockerfile
+        context: .
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+        POSTGRES_DB: storage
+        POSTGRES_PASSWORD: my_secret_password
+  api:
+    image: postgrest/postgrest
+    environment:
+        PGRST_DB_URI: postgres://storage_user:e7e069f5f971@db:5432/storage
+        PGRST_DB_SCHEMA: public
+        PGRST_DB_ANON_ROLE: storage_user
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+  pgAdmin:
+    image: dpage/pgadmin4
+    environment:
+        PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+        PGADMIN_DEFAULT_PASSWORD: admin
+        PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: "False"
+    ports:
+      - "5051:80"
+  swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    environment:
+      API_URL: http://localhost:3000
+
+volumes:
+    db-data:
