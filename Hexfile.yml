@@ -1,12 +1,5 @@
 services:
   -
-    name: mongo-front-service
-    image: mongo
-    ports:
-      - "27019:27017"
-    volumes:
-      - mongo-front-service:/data/db
-  -
     name: mongo-state
     image: mongo
     ports:
@@ -40,7 +33,7 @@ services:
     volumes:
       - front-service-logs:/front-end-service/logs
     environment:
-      - DB_URI=mongodb://mongo-front-service/fe-db
+      - DB_API_ORIGIN=http://172.31.11.85:3000
       - ARNAUX_URL=ws://messenger:3000
       - GUNSLINGERS=false
       - LOG_DBURI=mongodb://mongo-logs/qd-logs
@@ -99,6 +92,5 @@ messenger:
   port: 3000
 
 init-sequence:
-  - mongo-front-service
   - mongo-state
   - mongo-logs
