@@ -1,5 +1,7 @@
 CREATE USER storage_user WITH PASSWORD 'e7e069f5f971';
 
+-- schema --
+
 CREATE TYPE public.puzzle_correctness AS ENUM (
     'incorrect',
     'correct',
@@ -8,6 +10,18 @@ CREATE TYPE public.puzzle_correctness AS ENUM (
 
 
 ALTER TYPE public.puzzle_correctness OWNER TO storage_user;
+
+--
+-- Name: session_role; Type: TYPE; Schema: public; Owner: storage_user
+--
+
+CREATE TYPE public.session_role AS ENUM (
+    'owner',
+    'game_master'
+);
+
+
+ALTER TYPE public.session_role OWNER TO storage_user;
 
 SET default_tablespace = '';
 
@@ -97,6 +111,7 @@ CREATE TABLE public.puzzle_types (
     name text NOT NULL
 );
 
+
 ALTER TABLE public.puzzle_types OWNER TO storage_user;
 
 --
@@ -133,28 +148,17 @@ CREATE TABLE public.scores (
 ALTER TABLE public.scores OWNER TO storage_user;
 
 --
--- Name: session_gamemasters; Type: TABLE; Schema: public; Owner: storage_user
+-- Name: session_roles; Type: TABLE; Schema: public; Owner: storage_user
 --
 
-CREATE TABLE public.session_gamemasters (
+CREATE TABLE public.session_roles (
     "user" uuid NOT NULL,
-    session uuid NOT NULL
+    session uuid NOT NULL,
+    role public.session_role NOT NULL
 );
 
 
-ALTER TABLE public.session_gamemasters OWNER TO storage_user;
-
---
--- Name: session_owners; Type: TABLE; Schema: public; Owner: storage_user
---
-
-CREATE TABLE public.session_owners (
-    "user" uuid NOT NULL,
-    session uuid NOT NULL
-);
-
-
-ALTER TABLE public.session_owners OWNER TO storage_user;
+ALTER TABLE public.session_roles OWNER TO storage_user;
 
 --
 -- Name: sessions; Type: TABLE; Schema: public; Owner: storage_user
@@ -243,18 +247,10 @@ ALTER TABLE ONLY public.scores
 
 
 --
--- Name: session_gamemasters session_gamemasters_pkey; Type: CONSTRAINT; Schema: public; Owner: storage_user
+-- Name: session_roles session_owners_pkey; Type: CONSTRAINT; Schema: public; Owner: storage_user
 --
 
-ALTER TABLE ONLY public.session_gamemasters
-    ADD CONSTRAINT session_gamemasters_pkey PRIMARY KEY ("user", session);
-
-
---
--- Name: session_owners session_owners_pkey; Type: CONSTRAINT; Schema: public; Owner: storage_user
---
-
-ALTER TABLE ONLY public.session_owners
+ALTER TABLE ONLY public.session_roles
     ADD CONSTRAINT session_owners_pkey PRIMARY KEY ("user", session);
 
 
@@ -371,34 +367,18 @@ ALTER TABLE ONLY public.scores
 
 
 --
--- Name: session_gamemasters session_gamemasters_session_fkey; Type: FK CONSTRAINT; Schema: public; Owner: storage_user
+-- Name: session_roles session_owners_session_fkey; Type: FK CONSTRAINT; Schema: public; Owner: storage_user
 --
 
-ALTER TABLE ONLY public.session_gamemasters
-    ADD CONSTRAINT session_gamemasters_session_fkey FOREIGN KEY (session) REFERENCES public.sessions(id);
-
-
---
--- Name: session_gamemasters session_gamemasters_user_fkey; Type: FK CONSTRAINT; Schema: public; Owner: storage_user
---
-
-ALTER TABLE ONLY public.session_gamemasters
-    ADD CONSTRAINT session_gamemasters_user_fkey FOREIGN KEY ("user") REFERENCES public.users(id);
-
-
---
--- Name: session_owners session_owners_session_fkey; Type: FK CONSTRAINT; Schema: public; Owner: storage_user
---
-
-ALTER TABLE ONLY public.session_owners
+ALTER TABLE ONLY public.session_roles
     ADD CONSTRAINT session_owners_session_fkey FOREIGN KEY (session) REFERENCES public.sessions(id);
 
 
 --
--- Name: session_owners session_owners_user_fkey; Type: FK CONSTRAINT; Schema: public; Owner: storage_user
+-- Name: session_roles session_owners_user_fkey; Type: FK CONSTRAINT; Schema: public; Owner: storage_user
 --
 
-ALTER TABLE ONLY public.session_owners
+ALTER TABLE ONLY public.session_roles
     ADD CONSTRAINT session_owners_user_fkey FOREIGN KEY ("user") REFERENCES public.users(id);
 
 
@@ -408,6 +388,10 @@ ALTER TABLE ONLY public.session_owners
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_auth_provider_fkey FOREIGN KEY (auth_provider) REFERENCES public.auth_providers(name);
+
+
+-- end of schema --
+
 
 INSERT INTO public.puzzle_types (name)
 	VALUES ('cssqd'), ('jsqd'), ('lodashqd');
