@@ -18,6 +18,7 @@ services:
         PGRST_DB_URI: postgres://storage_user:e7e069f5f971@db:5432/storage
         PGRST_DB_SCHEMA: public
         PGRST_DB_ANON_ROLE: storage_user
+        PGRST_OPENAPI_SERVER_PROXY_URI: http://localhost:3000
     depends_on:
       - db
     ports:
