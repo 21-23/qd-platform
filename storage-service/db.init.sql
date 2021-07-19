@@ -1,4 +1,6 @@
-CREATE USER storage_user WITH PASSWORD 'e7e069f5f971';
+\set pg_storage_user `echo "$POSTGRES_STORAGE_USER"`
+\set pg_storage_user_password `echo "'$POSTGRES_STORAGE_USER_PASSWORD'"`
+CREATE USER :pg_storage_user WITH PASSWORD :pg_storage_user_password;
 
 -- schema --
 
