@@ -85,7 +85,8 @@ ALTER TABLE public.puzzle_set_puzzles OWNER TO storage_user;
 
 CREATE TABLE public.puzzle_sets (
     id uuid DEFAULT gen_random_uuid() NOT NULL,
-    puzzle_order uuid[] NOT NULL
+    puzzle_order uuid[] NOT NULL,
+    name text NOT NULL
 );
 
 
@@ -382,6 +383,14 @@ ALTER TABLE ONLY public.session_roles
 
 ALTER TABLE ONLY public.session_roles
     ADD CONSTRAINT session_owners_user_fkey FOREIGN KEY ("user") REFERENCES public.users(id);
+
+
+--
+-- Name: sessions sessions_puzzle_set_fkey; Type: FK CONSTRAINT; Schema: public; Owner: storage_user
+--
+
+ALTER TABLE ONLY public.sessions
+    ADD CONSTRAINT sessions_puzzle_set_fkey FOREIGN KEY (puzzle_set) REFERENCES public.puzzle_sets(id) NOT VALID;
 
 
 --
