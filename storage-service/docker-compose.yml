@@ -10,14 +10,16 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
-        POSTGRES_DB: storage
-        POSTGRES_PASSWORD: my_secret_password
+        POSTGRES_DB: "${POSTGRES_DB}"
+        POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+        POSTGRES_STORAGE_USER: "${POSTGRES_STORAGE_USER}"
+        POSTGRES_STORAGE_USER_PASSWORD: "${POSTGRES_STORAGE_USER_PASSWORD}"
   api:
     image: postgrest/postgrest
     environment:
-        PGRST_DB_URI: postgres://storage_user:e7e069f5f971@db:5432/storage
+        PGRST_DB_URI: "postgres://${POSTGRES_STORAGE_USER}:${POSTGRES_STORAGE_USER_PASSWORD}@db:5432/${POSTGRES_DB}"
         PGRST_DB_SCHEMA: public
-        PGRST_DB_ANON_ROLE: storage_user
+        PGRST_DB_ANON_ROLE: "${POSTGRES_STORAGE_USER}"
         PGRST_OPENAPI_SERVER_PROXY_URI: http://localhost:3000
     depends_on:
       - db
@@ -26,8 +28,8 @@ services:
   pgAdmin:
     image: dpage/pgadmin4
     environment:
-        PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
-        PGADMIN_DEFAULT_PASSWORD: admin
+        PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}"
+        PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}"
         PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: "False"
     ports:
       - "5051:80"
